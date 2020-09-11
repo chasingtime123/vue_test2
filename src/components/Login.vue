@@ -33,8 +33,8 @@
             return{
                 //这是登录表单的数据绑定
                 loginForm :{
-                    username:'admin',
-                    password:'123456'
+                    username:'',
+                    password:''
                 },
                 //表单验证规则对象
                 loginFormRules: {
@@ -56,7 +56,7 @@
                 this.$refs.loginFormRef.resetFields();
             },
             login(){
-                this.$refs.loginFormRef.validate(async valid => {
+                /*this.$refs.loginFormRef.validate(async valid => {
                     if(!valid) return;
                     const { data: result } = await this.$http.post('login', this.loginForm)
                     if(result.meta.status !== 200) return this.$message.error('登录失败')
@@ -69,7 +69,8 @@
                     window.sessionStorage.setItem('token',result.data.token);
                     //通过编程式导航跳转到后台主页，路由地址是  /home
                     this.$router.push('/home');
-                });
+                });*/
+                this.$router.push('/home');
             }
         }
     }
