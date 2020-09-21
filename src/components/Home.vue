@@ -15,10 +15,11 @@
                     <div class="toggle-button" @click="toggleClick"><i class="el-icon-menu"></i></div>
                     <!--侧边栏菜单区域-->
                     <!--用户管理--><!-- unique-opened是否只保持一个子菜单的展开-->
-                    <el-menu background-color="#333744" text-color="#fff"
+                    <el-menu background-color="#333744" text-color="#fff" :default-active="activePath"
                                        active-text-color="#409BFF" router
                                        unique-opened :collapse="isCollapsed"
-                                       :collapse-transition="false">    <!--是否开启折叠动画-->
+                                       :collapse-transition="false" router  > <!--是否开启折叠动画-->
+
                     <!--一级菜单--><!--使用后台数据只需要写一个el-submenu，其它会循环出来-->
                     <el-submenu index="1"><!--获取后台数据：  :index="item.id + ''" v-for="item in menulist" :key="item.id"-->
                         <!--一级菜单的模板区域-->
@@ -29,10 +30,10 @@
                             <span>用户管理</span><!--获取后台数据:   {{subItem.authName}} -->
                         </template>
                         <!--二级菜单--><!--一级菜单的模板区域-->
-                        <el-menu-item index="users" ><!--获取后台数据：    :index="'/' + subItem.path"  v-for="subItem in item.children" :key="subItem.id"-->
+                        <el-menu-item index="users" @click="saveNavState('/users')"><!--获取后台数据：    :index="'/' + subItem.path"  v-for="subItem in item.children" :key="subItem.id"-->
                             <template slot="title" width="190px">
                                 <i class="el-icon-menu"></i>
-                                <span>添加用户</span><!--获取后台数据:   {{subItem.authName}} -->
+                                <span>用户列表</span><!--获取后台数据:   {{subItem.authName}} -->
                             </template>
                         </el-menu-item>
                     </el-submenu>
@@ -51,7 +52,7 @@
                                 <span>权限管理</span><!--获取后台数据:   {{subItem.authName}} -->
                             </template>
                             <!--二级菜单--><!--一级菜单的模板区域-->
-                            <el-menu-item index="2-5-2"><!--获取后台数据：     :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id"-->
+                            <el-menu-item index="roles"><!--获取后台数据：     :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id"-->
                                 <template slot="title" width="190px">
                                     <i class="el-icon-menu"></i>
                                     <span>权限管理1</span><!--获取后台数据:   {{subItem.authName}} -->
@@ -150,11 +151,14 @@
                     '145':'iconfont icon-baobiao'
                 },
                 //是否折叠
-                isCollapsed:false
+                isCollapsed:false,
+                //被激活的链接地址
+                activePath: ''
             }
         },
         created(){
-            this.getMenuList()
+            this.getMenuList();
+            this.activePath = window.sessionStorage.getItem('activePath')
         },
         methods:{
         logout(){
@@ -171,6 +175,11 @@
             //点击按钮，切换菜单的折叠与展开
             toggleClick(){
                 this.isCollapsed = !this.isCollapsed
+            },
+            //保存链接的激活状态
+            saveNavState(activePath){
+                window.sessionStorage.setItem('activePath',activePath)
+                this.activePath = activePath;
             }
     }
     };
