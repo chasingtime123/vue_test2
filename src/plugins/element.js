@@ -5,6 +5,7 @@ import {Form, FormItem} from "element-ui";
 import {Input} from "element-ui";
 import {Message} from "element-ui";
 import Validator from 'vue-validator'
+import { MessageBox } from 'element-ui';
 import {
     Container,Header,Aside,Main,Menu,
     Submenu,MenuItemGroup,MenuItem,
@@ -38,3 +39,4 @@ Vue.use(Pagination)
 Vue.use(Dialog)
 Vue.use(Validator)
 Vue.prototype.$message = Message
+Vue.prototype.$confirm = MessageBox.confirm
