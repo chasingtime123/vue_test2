@@ -279,7 +279,20 @@
                 this.$refs.addFormRef.resetFields()
             },
             addUserInfo(){
-
+                    this.$refs.addFormRef.validator(async valid => {
+                        if(!valid) return
+                        //可以发起添加用户的网络请求
+                        const {data:res} = await this.$http.post('users',this.addForm)
+                        if(res.meta.status != 201){
+                            this.$message.error('添加用户失败！')
+                        }else {
+                            this.$message.success('添加用户成功！')
+                            //隐藏添加用户的对话框
+                            this.addDialogClosed = false
+                            //刷新用户列表
+                            this.getUserList()
+                        }
+                    })
             },
             //修改用户对话框
             showEditDialog(){
