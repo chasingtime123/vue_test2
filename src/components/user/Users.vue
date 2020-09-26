@@ -102,7 +102,7 @@
             <!--底部区域-->
             <span slot="footer" class="dialog-footer">
                 <el-button @click="addDialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="editUserInfo">确 定</el-button>
+                <el-button type="primary" @click="addUserInfo">确 定</el-button>
             </span>
         </el-dialog>
 
@@ -127,9 +127,9 @@
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-            <el-button @click="editDialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="editUserInfo">确 定</el-button>
-  </span>
+                <el-button @click="editDialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="editUserInfo">确 定</el-button>
+            </span>
         </el-dialog>
     </div>
 </template>
@@ -276,7 +276,10 @@
             },
             //监听添加用户对话框的关闭事件
             addDialogClosed(){
-                this.$refs.add
+                this.$refs.addFormRef.resetFields()
+            },
+            addUserInfo(){
+
             },
             //修改用户对话框
             showEditDialog(){

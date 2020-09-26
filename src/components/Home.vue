@@ -55,7 +55,13 @@
                             <el-menu-item index="roles"><!--获取后台数据：     :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id"-->
                                 <template slot="title" width="190px">
                                     <i class="el-icon-menu"></i>
-                                    <span>权限管理1</span><!--获取后台数据:   {{subItem.authName}} -->
+                                    <span>角色列表</span><!--获取后台数据:   {{subItem.authName}} -->
+                                </template>
+                            </el-menu-item>
+                            <el-menu-item index="rights"><!--获取后台数据：     :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id"-->
+                                <template slot="title" width="190px">
+                                    <i class="el-icon-menu"></i>
+                                    <span>权限列表</span><!--获取后台数据:   {{subItem.authName}} -->
                                 </template>
                             </el-menu-item>
                         </el-submenu>
