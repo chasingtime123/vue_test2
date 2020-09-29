@@ -22,8 +22,10 @@
                 <el-table-column label="角色描述" prop="roleDesc"></el-table-column>
                 <el-table-column label="操作" width="300px">
                     <template slot-scope="scope">
-                        <el-button size="mini" type="primary" icon="el-icon-edit" @click="editDialogVisible = true">编辑</el-button><!--@click="EditDialog(scope.row.id)"-->
-                        <el-button size="mini" type="danger" icon="el-icon-delete" @click="lz()">删除</el-button><!--@click="removeDialog(scope.row.id)"-->
+                        <el-button size="mini" type="primary"
+                                   icon="el-icon-edit" @click="editDialogVisible = true">编辑</el-button><!--@click="EditDialog(scope.row.id)"-->
+                        <el-button size="mini" type="danger"
+                                   icon="el-icon-delete" @click="removeRolesByID">删除</el-button><!--@click="removeDialog(scope.row.id)"-->
                         <el-button size="mini" type="warning" icon="el-icon-setting" @click="">分配权限</el-button>
                     </template>
                 </el-table-column>
@@ -114,7 +116,7 @@
         created() {
             this.getRolesList()
         },
-        method:{
+        methods:{
 
             //获取所有角色的列表
             async getRolesList(){
@@ -167,16 +169,8 @@
                     this.$message.success('更新角色信息成功')
                 })
             },
-            lz(){
-                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                })
-            }
             //根据Id删除对应角色信息
-                /*async removeRolesByID(id){
-                console.log('进来了')
+                async removeRolesByID(id){
                     //弹框提示是否删除
                     const confirmResult = await this.$confirm(
                         '此操作将永久删除该角色, 是否继续?', '提示',
@@ -196,8 +190,7 @@
                         this.$message.success('删除成功！')
                         //刷新数据列表
                         this.roleList = res.data
-            }*/
-
+            }
         }
     }
 </script>
